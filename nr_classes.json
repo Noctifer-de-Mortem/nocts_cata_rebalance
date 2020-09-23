@@ -1,0 +1,67 @@
+[
+  {
+    "type": "profession",
+    "ident": "bio_experimental_op",
+    "name": "Experiental Operator",
+    "description": "You were recruited for a PMC's test program to create a high-tech elite fighiting force. With experimental weaponry, advance augmentations and your operator training you might just have what it takes to survive.",
+    "points": 12,
+    "CBMs": [
+      "bio_sunglasses",
+      "bio_ears",
+	  "bio_targeting",
+      "bio_purifier",
+      "bio_carbon",
+      "bio_watch",
+      "bio_adrenaline",
+      "bio_night_vision",
+	  "bio_climate",
+      "bio_nanobots",
+      "bio_painkiller",
+	  "bio_blood_filter",
+	  "bio_leukocyte",
+      "bio_ups",
+      "bio_metabolics",
+      "bio_power_storage_mkII",
+      "bio_power_storage_mkII"
+    ],
+    "skills": [
+      { "level": 3, "name": "gun" },
+      { "level": 3, "name": "rifle" },
+      { "level": 3, "name": "pistol" },
+      { "level": 2, "name": "melee" },
+      { "level": 2, "name": "unarmed" },
+      { "level": 2, "name": "cutting" },
+      { "level": 2, "name": "stabbing" },
+      { "level": 2, "name": "bashing" },
+      { "level": 2, "name": "dodge" }
+    ],
+    "items": {
+      "both": {
+        "items": [ 
+          "helmet_liner",
+          "undershirt",
+          "arm_warmers",
+          "gloves_liner",
+          "leg_warmers", 
+          "socks",
+          "pants_army",
+          "jacket_army",
+          "gloves_tactical",
+          "mask_ski",
+          "tac_helmet",
+          "socks",
+          "boots_combat",
+          "wristwatch" 
+        ],
+        "entries": [
+          { "group": "charged_two_way_radio" },
+          { "item": "sheath", "contents-item": "knife_combat" },
+          { "item": "holster", "contents-item": "v29" },
+          { "item": "laser_rifle", "contents-item": [ "shoulder_strap"] }
+        ]
+      },
+      "male": [ "boxer_shorts" ],
+      "female": [ "sports_bra", "boxer_shorts" ]
+    }
+  }
+]

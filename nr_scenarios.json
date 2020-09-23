@@ -1,0 +1,30 @@
+[
+  {
+    "type": "scenario",
+    "name": "Soldier's Campsite",
+    "description": "Amidst all the chaos and confusion, you and a few other soldiers managed to regroup and ended up in an abandoned campsite. None of these soldiers are from your unit, chain of command has collapsed as far as you know and you have to earn your supplies now. This is your worst deployment yet.",
+    "ident": "soldier_campsite_scenario",
+    "points": 2,
+    "start_name": "Campsite",
+    "allowed_locs": [ "campsite_field_soldier_l" ],
+    "professions": [ "soldier", "national_guard", "specops", "bio_soldier", "bio_sniper","bio_specops", "bio_infantry", "bio_scout", "bio_tool", "bio_knight", "bio_experimental_op" ]
+  },
+  {
+    "type": "scenario",
+    "ident": "heli_crash",
+    "copy-from": "heli_crash",
+    "extend": { "professions": [ "bio_experimental_op" ] }
+  },
+  {
+    "type": "scenario",
+    "ident": "fema_help",
+    "copy-from": "fema_help",
+    "extend": { "professions": [ "bio_experimental_op" ] }
+  },
+  {
+    "type": "scenario",
+    "ident": "experiment_soldier_start",
+    "copy-from": "experiment_soldier_start",
+    "extend": { "professions": [ "bio_experimental_op" ] }
+  }
+]

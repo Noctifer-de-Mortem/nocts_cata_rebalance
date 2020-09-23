@@ -1,0 +1,49 @@
+[
+  {
+    "type": "MOD_INFO",
+    "mod-type": "SUPPLEMENTAL",
+    "ident": "nocts_rebalance",
+    "name": "Noct's Rebalance",
+    "authors": [ "Noctifer-de-Mortem" ],
+    "maintainers": [ "Noctifer-de-Mortem" ],
+    "description": "Noctifer's personal patch of the game. Makes changes here and there to tailor the game to a specific playstyle.",
+    "category": "rebalance",
+    "dependencies": [ "dda", "more_classes_scenarios", "Cata++" ],
+    "path": ""
+  },
+  {
+    "type": "skill_boost",
+    "stat": "str",
+    "skills": [ "archery", "swimming", "bashing", "cutting", "melee", "throw", "stabbing", "unarmed" ],
+    "skill_offset": 0,
+    "scaling_power": 0.5
+  },
+  {
+    "type": "skill_boost",
+    "stat": "dex",
+    "skills": [ "traps", "mechanics", "dodge", "stabbing", "unarmed", "tailor", "fabrication", "cutting", "melee", "throw" ],
+    "skill_offset": 0,
+    "scaling_power": 0.5
+  },
+  {
+    "type": "skill_boost",
+    "stat": "int",
+    "skills": [ "traps", "mechanics", "driving", "survival", "tailor", "barter", "computer", "cooking", "electronics", "fabrication", "firstaid", "speech" ],
+    "skill_offset": 0,
+    "scaling_power": 0.4
+  },
+  {
+    "type": "skill_boost",
+    "stat": "per",
+    "skills": [ "archery", "gun", "launcher", "pistol", "rifle", "shotgun", "smg" ],
+    "skill_offset": 0,
+    "scaling_power": 0.5
+  },
+  {
+    "type": "EXTERNAL_OPTION",
+    "name": "STATS_THROUGH_KILLS",
+    "info": "Stats through Kills.  A mod that allows your stats to increase by killing zombies.",
+    "stype": "bool",
+    "value": true
+  }
+]

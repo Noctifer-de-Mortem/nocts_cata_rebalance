@@ -1,0 +1,230 @@
+[
+  {
+    "type": "mapgen",
+    "method": "json",
+    "om_terrain": [ "campsite_field_soldier" ],
+    "weight": 500,
+    "object": {
+      "rows": [
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        ".........###..###.......",
+        ".........#'#..#'#.......",
+        ".........#+#rr#+#.......",
+        "....###...........###...",
+        "....#'+.....-.....+'#...",
+        "....###...-ddd-...###...",
+        "......r....dbd....r.....",
+        "....###...-ddd-...###...",
+        "....#'+.....-.....+'#...",
+        "....###...........###...",
+        ".........#+#rr#+#.......",
+        ".........#'#..#'#.......",
+        ".........###..###.......",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................",
+        "........................"
+      ],
+      "terrain": {
+        "#": "t_grass",
+        "'": "t_grass",
+        "+": "t_grass",
+        "-": "t_dirt",
+        ".": [ "t_grass", "t_grass", "t_grass", "t_grass", "t_grass", "t_dirt" ],
+        "b": "t_dirt",
+        "d": "t_dirt",
+        "r": "t_dirt",
+        "t": "t_tree"
+      },
+      "furniture": {
+        "#": "f_canvas_wall",
+        "'": "f_groundsheet",
+        "+": "f_canvas_door",
+        "-": "f_camp_chair",
+        "b": "f_brazier",
+        "r": "f_tourist_table"
+      },
+      "add": [
+        { "item": "toolbox", "x": 12, "y": 6 }
+      ],
+      "place_npcs": [ 
+	  { "class": "static_soldier_nr", "x": 12, "y": 8 },
+	  { "class": "static_super_soldier_nr", "x": 12, "y": 12 },
+	  { "class": "static_soldier_nr", "x": 10, "y": 9 },
+	  { "class": "static_super_soldier_nr", "x": 14, "y": 9 },
+	  { "class": "static_soldier_nr", "x": 10, "y": 11 },
+	  { "class": "static_super_soldier_nr", "x": 14, "y": 11 }
+	  ]
+    }
+  },
+  {
+    "type": "overmap_terrain",
+    "id": "campsite_field_soldier",
+    "name": "campsite",
+    "sym": "+",
+    "color": "green",
+    "see_cost": 5,
+    "extras": "field",
+    "flags": [ "NO_ROTATE" ]
+  },
+  {
+    "type": "overmap_special",
+    "id": "campsite_field_soldier_s",
+    "overmaps": [ { "point": [ 0, 0, 0 ], "overmap": "campsite_field_soldier" } ],
+    "locations": [ "swamp" ],
+    "city_distance": [ 15, -1 ],
+    "city_sizes": [ 0, 12 ],
+    "occurrences": [ 1, 1 ],
+    "flags": [ "CLASSIC", "UNIQUE" ]
+  },
+  {
+    "type": "start_location",
+    "ident": "campsite_field_soldier_l",
+    "name": "campsite",
+    "target": "campsite_field_soldier"
+  },
+  {
+    "type": "npc",
+    "id": "static_soldier_nr",
+    "comment": "Soldier in a campsite for a specific scenario.",
+    "name_suffix": "Soldier",
+    "class": "NC_SOLDIER",
+    "attitude": 0,
+    "mission": 7,
+    "chat": "TALK_SOLDIER_CAMPSITE",
+    "faction": "wasteland_scavengers"
+  },
+  {
+    "type": "npc",
+    "id": "static_super_soldier_nr",
+    "comment": "Soldier in a campsite for a specific scenario.",
+    "name_suffix": "Soldier",
+    "class": "NC_SUPER_SOLDIER",
+    "attitude": 0,
+    "mission": 7,
+    "chat": "TALK_SOLDIER_CAMPSITE",
+    "faction": "wasteland_scavengers"
+  },
+  {
+    "id": "TALK_SOLDIER_CAMPSITE",
+    "type": "talk_topic",
+    "dynamic_line": [ "So this is all that's left huh?", "At least we found this campsite.", "At least we are still alive.", "Glad I joined the army when I did..." ],
+    "responses": [
+      { "text": "What should we do now?", "topic": "TALK_SOLDIER_CAMPSITE_PLANS" },
+      { "text": "Any tips?", "topic": "TALK_SHELTER_ADVICE" },
+      { "text": "Can I do anything for you?", "topic": "TALK_MISSION_LIST" },
+      { "text": "Want to travel with me?", "topic": "TALK_SUGGEST_FOLLOW_CAMPSITE_SOLDIER", "condition": { "not": "npc_following" } },
+      { "text": "Let's trade items.", "topic": "TALK_NONE", "effect": "start_trade" },
+      { "text": "I could really use some extra gear.", "topic": "TALK_SHARE_EQUIPMENT" },
+      { "text": "Well, bye.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "id": "TALK_SOLDIER_CAMPSITE_PLANS",
+    "type": "talk_topic",
+    "dynamic_line": [
+      "I don't know, look for supplies and other survivors I guess.",
+      "Maybe we should build some defenses.",
+      "I suppose getting a car up and running should really be useful if we have to disappear quickly from here.",
+      "We could look for one of those farms out here.  They can provide plenty of food and aren't close to the cities.",
+      "We should probably stay away from those cities, even if there's plenty of useful stuff there."
+    ],
+    "responses": [ { "text": "Hmm, okay.", "topic": "TALK_NONE" } ]
+  },
+  {
+    "id": "TALK_SUGGEST_FOLLOW_CAMPSITE_SOLDIER",
+    "type": "talk_topic",
+    "category": "CATEGORY_FOLLOW",
+    "dynamic_line": {
+      "npc_has_effect": "infection",
+      "no": {
+        "npc_has_effect": "asked_to_follow",
+        "no": "Why should I travel with you?",
+        "yes": "You asked me recently; ask again later."
+      },
+      "yes": "Not until I get some antibiotics..."
+    },
+    "responses": [
+      {
+        "switch": true,
+        "text": "Understood.  I'll get those antibiotics.",
+        "topic": "TALK_NONE",
+        "condition": { "npc_has_effect": "infection" }
+      },
+      {
+        "switch": true,
+        "text": "Right, right, I'll ask later.",
+        "topic": "TALK_NONE",
+        "condition": { "npc_has_effect": "asked_to_follow" }
+      },
+      {
+        "switch": true,
+        "default": true,
+        "text": "I can keep you safe.",
+        "trial": { "type": "PERSUADE", "difficulty": 0, "mod": [ [ "FEAR", 8 ], [ "VALUE", 2 ], [ "TRUST", 2 ], [ "BRAVERY", -2 ] ] },
+        "success": { "topic": "TALK_AGREE_FOLLOW", "effect": "follow", "opinion": { "trust": 2, "value": 4 } },
+        "failure": { "topic": "TALK_DENY_FOLLOW", "effect": "deny_follow", "opinion": { "value": -1, "anger": 1 } }
+      },
+      {
+        "switch": true,
+        "default": true,
+        "text": "You can keep me safe.",
+        "trial": {
+          "type": "PERSUADE",
+          "difficulty": 20,
+          "mod": [ [ "ALTRUISM", 6 ], [ "POS_FEAR", -6 ], [ "BRAVERY", 2 ], [ "ANGER", -6 ], [ "VALUE", 2 ] ]
+        },
+        "success": { "topic": "TALK_AGREE_FOLLOW", "effect": "follow", "opinion": { "fear": -2, "value": -2 } },
+        "failure": { "topic": "TALK_DENY_FOLLOW", "effect": "deny_follow", "opinion": { "fear": -1, "value": -1, "anger": 1 } }
+      },
+      {
+        "switch": true,
+        "default": true,
+        "text": "We're friends, aren't we?",
+        "trial": { "type": "PERSUADE", "difficulty": 0, "mod": [ [ "TRUST", 3 ], [ "VALUE", 3 ], [ "ANGER", -3 ] ] },
+        "success": { "topic": "TALK_AGREE_FOLLOW", "effect": "follow", "opinion": { "trust": 4, "value": 2, "anger": -4 } },
+        "failure": { "topic": "TALK_DENY_FOLLOW", "effect": "deny_follow", "opinion": { "trust": 1, "fear": -1, "value": -1, "anger": 1 } }
+      },
+      {
+        "switch": true,
+        "default": true,
+        "text": "It's either that or stay here...",
+        "trial": { "type": "PERSUADE", "difficulty": 50 },
+        "success": { "topic": "TALK_AGREE_FOLLOW", "effect": "follow" },
+        "failure": { "topic": "TALK_DENY_FOLLOW", "effect": "deny_follow", "opinion": { "anger": 1 } }
+      },
+      {
+        "switch": true,
+        "default": true,
+        "text": "I'll kill you if you don't.",
+        "trial": { "type": "INTIMIDATE", "difficulty": -100, "mod": [ [ "FEAR", 8 ], [ "VALUE", 2 ], [ "TRUST", 2 ], [ "BRAVERY", -2 ] ] },
+        "success": { "topic": "TALK_AGREE_FOLLOW", "effect": "follow", "opinion": { "trust": -4, "fear": 4, "value": -4, "anger": 4 } },
+        "failure": { "topic": "TALK_DENY_FOLLOW_TRIED_KILLED", "effect": "deny_follow", "opinion": { "trust": -5, "value": -5, "anger": 10 } }
+      },
+      { "text": "Nevermind", "topic": "TALK_NONE" }
+    ]
+  },
+  {
+    "id": "TALK_DENY_FOLLOW_TRIED_KILLED",
+    "type": "talk_topic",
+    "category": "CATEGORY_FOLLOW",
+    "dynamic_line": [ "I would like to see you try..." ],
+    "responses": [
+      { "text": "Just kidding!", "topic": "TALK_DENY_FOLLOW_TRIED_KILLED2" },
+      { "text": "Bring it then!", "effect": "insult_combat", "opinion": { "trust": -10,"value": -10, "anger": 20 }, "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "id": "TALK_DENY_FOLLOW_TRIED_KILLED2",
+    "type": "talk_topic",
+    "category": "CATEGORY_FOLLOW",
+    "dynamic_line": "Right, now get out of my sight.",
+    "responses": [ { "text": "...", "topic": "TALK_DONE" } ]
+  }
+]
